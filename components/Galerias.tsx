@@ -157,20 +157,7 @@ export default function Galerias() {
           borderBottom: "1px solid var(--color-divider)",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1240,
-            margin: "0 auto",
-            padding: "0 var(--gutter)",
-            display: "flex",
-            gap: "clamp(18px, 3vw, 40px)",
-            flexWrap: "wrap",
-            fontFamily: "var(--font-heading)",
-            fontSize: 14,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-          }}
-        >
+        <div className="tabs-row">
           {abas.map((a) => (
             <button
               key={a.slug}
