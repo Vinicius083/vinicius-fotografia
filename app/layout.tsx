@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Lora } from "next/font/google";
+import Header from "@/components/Header";
 import "./design-system.css";
 
 const cormorant = Cormorant_Garamond({
@@ -19,7 +20,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Vinícius Almeida Fotografia — João Pessoa, Paraíba",
+  title: "Vinícius Almeida Fotografia",
   description:
     "Fotografia documental, de estúdio, externa e de eventos em João Pessoa e em toda a Paraíba. Registro honesto, entrega tratada.",
   openGraph: {
@@ -31,10 +32,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="pt-BR" className={`${cormorant.variable} ${lora.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="pt-BR"
+      data-scroll-behavior="smooth"
+      className={`${cormorant.variable} ${lora.variable}`}
+    >
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

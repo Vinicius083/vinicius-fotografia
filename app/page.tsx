@@ -2,6 +2,8 @@ import Link from "next/link";
 import { CSSProperties } from "react";
 import ImageSlot from "@/components/ImageSlot";
 import BriefingForm from "@/components/BriefingForm";
+import Reveal from "@/components/Reveal";
+import BlurText from "@/components/BlurText";
 
 const WHATSAPP = "https://wa.me/5583996274938";
 const EMAIL = "jvinicius7337@gmail.com";
@@ -75,7 +77,11 @@ const series: Serie[] = [
     en: "Studio portraits, headshots and product still life.",
     slug: "estudio",
     slots: ["va-est-1", "va-est-2", "va-est-3"],
-    legendas: ["Estúdio — foto principal", "Estúdio — retrato", "Estúdio — produto"],
+    legendas: [
+      "Estúdio — foto principal",
+      "Estúdio — retrato",
+      "Estúdio — produto",
+    ],
     invertido: true,
   },
   {
@@ -88,7 +94,11 @@ const series: Serie[] = [
     en: "On-location sessions across Paraíba.",
     slug: "externo",
     slots: ["va-ext-1", "va-ext-2", "va-ext-3"],
-    legendas: ["Externo — foto principal", "Externo — locação", "Externo — retrato"],
+    legendas: [
+      "Externo — foto principal",
+      "Externo — locação",
+      "Externo — retrato",
+    ],
     invertido: false,
   },
   {
@@ -101,7 +111,11 @@ const series: Serie[] = [
     en: "Weddings, parties and corporate coverage.",
     slug: "eventos",
     slots: ["va-eve-1", "va-eve-2", "va-eve-3"],
-    legendas: ["Eventos — foto principal", "Eventos — momento", "Eventos — festa"],
+    legendas: [
+      "Eventos — foto principal",
+      "Eventos — momento",
+      "Eventos — festa",
+    ],
     invertido: true,
     ultimo: true,
   },
@@ -164,72 +178,19 @@ export default function Home() {
         textWrap: "pretty",
       }}
     >
-      <header
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 20,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 24,
-          padding: "14px clamp(20px, 4vw, 56px)",
-          background: "color-mix(in srgb, var(--color-bg) 92%, transparent)",
-          backdropFilter: "blur(8px)",
-          borderBottom: "1px solid var(--color-divider)",
-        }}
-      >
-        <a
-          href="#topo"
-          style={{ display: "flex", alignItems: "center", gap: 12, color: "var(--color-text)" }}
-        >
-          <span
-            style={{ fontFamily: "var(--font-heading)", fontSize: 17, letterSpacing: "0.02em" }}
-          >
-            Vinícius Almeida
-          </span>
-        </a>
-        <nav
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "clamp(14px, 2vw, 30px)",
-            fontFamily: "var(--font-heading)",
-            fontSize: 14,
-            letterSpacing: "0.04em",
-            flexWrap: "wrap",
-            justifyContent: "flex-end",
-          }}
-        >
-          <a href="#series" style={{ color: "var(--color-text)" }}>
-            Séries
-          </a>
-          <a href="#sobre" style={{ color: "var(--color-text)" }}>
-            Sobre
-          </a>
-          <a href="#processo" style={{ color: "var(--color-text)" }}>
-            Processo
-          </a>
-          <Link href="/galerias" style={{ color: "var(--color-text)" }}>
-            Galerias
-          </Link>
-          <a href="#contato" className="btn btn-primary">
-            Contratar
-          </a>
-        </nav>
-      </header>
-
       {/* Abertura */}
       <section
         id="topo"
         style={{
           padding:
-            "clamp(48px, 8vw, 110px) clamp(20px, 4vw, 56px) clamp(36px, 5vw, 72px)",
+            "clamp(48px, 8vw, 110px) var(--gutter) clamp(36px, 5vw, 72px)",
           maxWidth: 1240,
           margin: "0 auto",
+          ...({ "--hero-fs": "clamp(52px, 12vw, 168px)" } as CSSProperties),
         }}
       >
         <p
+          className="hero-line"
           style={{
             margin: "0 0 clamp(20px, 4vw, 40px)",
             fontFamily: "var(--font-heading)",
@@ -238,6 +199,7 @@ export default function Home() {
             textTransform: "uppercase",
             fontFeatureSettings: "'tnum'",
             color: "var(--color-accent-700)",
+            animationDelay: "40ms",
           }}
         >
           Fotografia · João Pessoa, Paraíba
@@ -246,12 +208,18 @@ export default function Home() {
           style={{
             margin: 0,
             fontWeight: 400,
-            fontSize: "clamp(52px, 12vw, 168px)",
+            fontSize: "var(--hero-fs)",
             lineHeight: 0.86,
             letterSpacing: "-0.03em",
           }}
         >
-          Vinícius
+          <BlurText
+            text="Vinícius"
+            animateBy="letters"
+            direction="top"
+            delay={35}
+            stepDuration={0.6}
+          />
         </h1>
         <div
           style={{
@@ -259,22 +227,28 @@ export default function Home() {
             alignItems: "flex-end",
             gap: "clamp(16px, 3vw, 44px)",
             flexWrap: "wrap",
-            marginTop: 4,
+            marginTop: "calc(var(--hero-fs) * -0.22)",
           }}
         >
           <h1
             style={{
               margin: 0,
               fontWeight: 400,
-              fontSize: "clamp(52px, 12vw, 168px)",
+              fontSize: "var(--hero-fs)",
               lineHeight: 0.86,
               letterSpacing: "-0.03em",
             }}
           >
-            Almeida
+            <BlurText
+              text="Almeida"
+              animateBy="letters"
+              direction="top"
+              delay={35}
+              stepDuration={0.6}
+            />
           </h1>
           <div
-            className="plate"
+            className="plate hero-plate"
             style={{
               flex: "1 1 260px",
               minWidth: 220,
@@ -283,7 +257,11 @@ export default function Home() {
               marginBottom: "clamp(6px, 1.4vw, 20px)",
             }}
           >
-            <ImageSlot id="va-hero" placeholder="Foto de abertura — 16:9" priority />
+            <ImageSlot
+              id="va-hero"
+              placeholder="Foto de abertura — 16:9"
+              priority
+            />
           </div>
         </div>
         <div
@@ -305,13 +283,13 @@ export default function Home() {
               lineHeight: 1.5,
             }}
           >
-            Fotografia documental, de estúdio, externa e de eventos. Trabalho com quem
-            quer registro honesto: imagens que continuam dizendo algo dez anos depois de
-            feitas.
+            Fotografia documental, de estúdio, externa e de eventos. Trabalho
+            com quem quer registro honesto: imagens que continuam dizendo algo
+            dez anos depois de feitas.
           </p>
           <p style={{ ...legenda, flex: "0 1 300px", margin: 0 }}>
-            Documentary, studio, outdoor and event photography — commissions in Paraíba
-            and across Brazil.
+            Documentary, studio, outdoor and event photography — commissions in
+            Paraíba and across Brazil.
           </p>
           <div
             style={{
@@ -334,7 +312,7 @@ export default function Home() {
       <section
         id="series"
         style={{
-          padding: "clamp(28px, 5vw, 56px) clamp(20px, 4vw, 56px) 0",
+          padding: "clamp(28px, 5vw, 56px) var(--gutter) 0",
           maxWidth: 1240,
           margin: "0 auto",
         }}
@@ -350,7 +328,13 @@ export default function Home() {
             paddingBottom: 12,
           }}
         >
-          <h2 style={{ margin: 0, fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 500 }}>
+          <h2
+            style={{
+              margin: 0,
+              fontSize: "clamp(26px, 3vw, 38px)",
+              fontWeight: 500,
+            }}
+          >
             Quatro maneiras de olhar
           </h2>
           <span
@@ -376,7 +360,9 @@ export default function Home() {
               flexDirection: s.invertido ? "row-reverse" : "row",
               gap: "clamp(24px, 4vw, 56px)",
               padding: "clamp(36px, 5vw, 72px) 0",
-              borderBottom: s.ultimo ? undefined : "1px solid var(--color-divider)",
+              borderBottom: s.ultimo
+                ? undefined
+                : "1px solid var(--color-divider)",
             }}
           >
             <div style={{ flex: "1 1 260px", minWidth: 240, maxWidth: 340 }}>
@@ -400,15 +386,29 @@ export default function Home() {
               </Link>
             </div>
             <div style={gradeSerie}>
-              <div className="plate" style={{ gridColumn: "1 / -1", aspectRatio: "3 / 2" }}>
-                <ImageSlot id={s.slots[0]} placeholder={s.legendas[0]} />
-              </div>
-              <div className="plate" style={{ aspectRatio: "4 / 5" }}>
-                <ImageSlot id={s.slots[1]} placeholder={s.legendas[1]} sizes="(max-width: 900px) 100vw, 25vw" />
-              </div>
-              <div className="plate" style={{ aspectRatio: "4 / 5" }}>
-                <ImageSlot id={s.slots[2]} placeholder={s.legendas[2]} sizes="(max-width: 900px) 100vw, 25vw" />
-              </div>
+              <Reveal style={{ gridColumn: "1 / -1" }}>
+                <div className="plate" style={{ aspectRatio: "3 / 2" }}>
+                  <ImageSlot id={s.slots[0]} placeholder={s.legendas[0]} />
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+                  <ImageSlot
+                    id={s.slots[1]}
+                    placeholder={s.legendas[1]}
+                    sizes="(max-width: 900px) 100vw, 25vw"
+                  />
+                </div>
+              </Reveal>
+              <Reveal delay={160}>
+                <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+                  <ImageSlot
+                    id={s.slots[2]}
+                    placeholder={s.legendas[2]}
+                    sizes="(max-width: 900px) 100vw, 25vw"
+                  />
+                </div>
+              </Reveal>
             </div>
           </article>
         ))}
@@ -416,33 +416,16 @@ export default function Home() {
 
       {/* Frase */}
       <section
+        data-header-invert
         style={{
           background: "#191714",
           color: "#f3f2f2",
-          padding: "clamp(72px, 12vw, 160px) clamp(20px, 4vw, 56px)",
+          padding: "clamp(72px, 12vw, 160px) var(--gutter)",
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        <span
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "var(--font-heading)",
-            fontSize: "clamp(220px, 40vw, 520px)",
-            lineHeight: 1,
-            color: "color-mix(in srgb, #b68235 16%, transparent)",
-            fontFeatureSettings: "'tnum'",
-            pointerEvents: "none",
-          }}
-        >
-          05
-        </span>
         <p
           style={{
             position: "relative",
@@ -455,7 +438,8 @@ export default function Home() {
             letterSpacing: "-0.02em",
           }}
         >
-          Fotografia não é sobre o instante. É sobre o que você vai querer lembrar dele.
+          Fotografia não é sobre o instante. É sobre o que você vai querer
+          lembrar dele.
         </p>
         <p
           style={{
@@ -465,7 +449,8 @@ export default function Home() {
             color: "color-mix(in srgb, #f3f2f2 66%, transparent)",
           }}
         >
-          Mais de 180 ensaios e coberturas entregues desde 2018 · João Pessoa, PB
+          Mais de 180 ensaios e coberturas entregues desde 2018 · João Pessoa,
+          PB
         </p>
       </section>
 
@@ -473,7 +458,7 @@ export default function Home() {
       <section
         id="sobre"
         style={{
-          padding: "clamp(56px, 8vw, 110px) clamp(20px, 4vw, 56px)",
+          padding: "clamp(56px, 8vw, 110px) var(--gutter)",
           maxWidth: 1240,
           margin: "0 auto",
           display: "flex",
@@ -481,18 +466,22 @@ export default function Home() {
           flexWrap: "wrap",
         }}
       >
-        <div
-          className="plate"
+        <Reveal
           style={{
             flex: "1 1 280px",
             minWidth: 240,
             maxWidth: 420,
-            aspectRatio: "4 / 5",
             alignSelf: "flex-start",
           }}
         >
-          <ImageSlot id="va-retrato" placeholder="Seu retrato — 4:5" sizes="(max-width: 900px) 100vw, 33vw" />
-        </div>
+          <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+            <ImageSlot
+              id="va-retrato"
+              placeholder="Seu retrato — 4:5"
+              sizes="(max-width: 900px) 100vw, 33vw"
+            />
+          </div>
+        </Reveal>
         <div style={{ flex: "2 1 420px", minWidth: 280 }}>
           <p style={{ ...kicker, fontFeatureSettings: undefined }}>Sobre</p>
           <h2
@@ -505,20 +494,23 @@ export default function Home() {
           >
             Fotógrafo em João Pessoa, com trabalho em toda a Paraíba
           </h2>
-          <div style={{ columns: "2 260px", columnGap: "clamp(24px, 3vw, 44px)" }}>
+          <div
+            style={{ columns: "2 260px", columnGap: "clamp(24px, 3vw, 44px)" }}
+          >
             <p style={justificado}>
-              Comecei fotografando o que estava perto: feiras, praia, o bairro. O olhar
-              documental que se formou ali continua na base de tudo o que faço hoje —
-              inclusive no estúdio e nos eventos.
+              Comecei fotografando o que estava perto: feiras, praia, o bairro.
+              O olhar documental que se formou ali continua na base de tudo o
+              que faço hoje — inclusive no estúdio e nos eventos.
             </p>
             <p style={justificado}>
-              Atendo clientes particulares, marcas e empresas. Cuido de todo o processo:
-              conversa inicial, planejamento de luz e locação, direção durante a sessão,
-              seleção e tratamento final das imagens.
+              Atendo clientes particulares, marcas e empresas. Cuido de todo o
+              processo: conversa inicial, planejamento de luz e locação, direção
+              durante a sessão, seleção e tratamento final das imagens.
             </p>
             <p style={justificado}>
-              Trabalho com equipamento próprio e completo, incluindo iluminação para
-              estúdio e locação, e mantenho backup redundante de todo material entregue.
+              Trabalho com equipamento próprio e completo, incluindo iluminação
+              para estúdio e locação, e mantenho backup redundante de todo
+              material entregue.
             </p>
           </div>
           <hr className="hr" />
@@ -550,7 +542,8 @@ export default function Home() {
                   style={{
                     margin: 0,
                     fontSize: 13,
-                    color: "color-mix(in srgb, var(--color-text) 60%, transparent)",
+                    color:
+                      "color-mix(in srgb, var(--color-text) 60%, transparent)",
                   }}
                 >
                   {texto}
@@ -565,7 +558,7 @@ export default function Home() {
       <section
         id="processo"
         style={{
-          padding: "0 clamp(20px, 4vw, 56px) clamp(56px, 8vw, 110px)",
+          padding: "0 var(--gutter) clamp(56px, 8vw, 110px)",
           maxWidth: 1240,
           margin: "0 auto",
         }}
@@ -581,7 +574,13 @@ export default function Home() {
             paddingBottom: 12,
           }}
         >
-          <h2 style={{ margin: 0, fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 500 }}>
+          <h2
+            style={{
+              margin: 0,
+              fontSize: "clamp(26px, 3vw, 38px)",
+              fontWeight: 500,
+            }}
+          >
             Como o trabalho acontece
           </h2>
           <span
@@ -641,7 +640,7 @@ export default function Home() {
       {/* Depoimentos */}
       <section
         style={{
-          padding: "0 clamp(20px, 4vw, 56px) clamp(56px, 8vw, 110px)",
+          padding: "0 var(--gutter) clamp(56px, 8vw, 110px)",
           maxWidth: 1240,
           margin: "0 auto",
         }}
@@ -690,7 +689,7 @@ export default function Home() {
         id="contato"
         style={{
           borderTop: "1px solid var(--color-divider)",
-          padding: "clamp(56px, 8vw, 110px) clamp(20px, 4vw, 56px)",
+          padding: "clamp(56px, 8vw, 110px) var(--gutter)",
           maxWidth: 1240,
           margin: "0 auto",
           display: "flex",
@@ -699,7 +698,9 @@ export default function Home() {
         }}
       >
         <div style={{ flex: "1 1 320px", minWidth: 280 }}>
-          <p style={{ ...kicker, fontFeatureSettings: undefined }}>Contratação</p>
+          <p style={{ ...kicker, fontFeatureSettings: undefined }}>
+            Contratação
+          </p>
           <h2
             style={{
               margin: "0 0 18px",
@@ -711,8 +712,8 @@ export default function Home() {
             Vamos combinar sua sessão
           </h2>
           <p style={{ margin: "0 0 28px", maxWidth: 420 }}>
-            Conte o tipo de trabalho, a data e onde será. Respondo em até 24 horas com
-            proposta, disponibilidade e valores.
+            Conte o tipo de trabalho, a data e onde será. Respondo em até 24
+            horas com proposta, disponibilidade e valores.
           </p>
           <div
             style={{
@@ -724,7 +725,9 @@ export default function Home() {
           >
             <a href={WHATSAPP} className="contact-row">
               <span className="label">WhatsApp</span>
-              <span style={{ fontFeatureSettings: "'tnum'" }}>+55 83 99627-4938</span>
+              <span style={{ fontFeatureSettings: "'tnum'" }}>
+                +55 83 99627-4938
+              </span>
             </a>
             <a href={`mailto:${EMAIL}`} className="contact-row">
               <span className="label">E-mail</span>
@@ -745,10 +748,11 @@ export default function Home() {
       </section>
 
       <footer
+        data-header-invert
         style={{
           background: "#191714",
           color: "#f3f2f2",
-          padding: "clamp(40px, 6vw, 72px) clamp(20px, 4vw, 56px) 28px",
+          padding: "clamp(40px, 6vw, 72px) var(--gutter) 28px",
         }}
       >
         <div
@@ -759,7 +763,8 @@ export default function Home() {
             gap: "clamp(24px, 4vw, 64px)",
             flexWrap: "wrap",
             justifyContent: "space-between",
-            borderBottom: "1px solid color-mix(in srgb, #f3f2f2 18%, transparent)",
+            borderBottom:
+              "1px solid color-mix(in srgb, #f3f2f2 18%, transparent)",
             paddingBottom: "clamp(28px, 4vw, 48px)",
           }}
         >
@@ -768,11 +773,17 @@ export default function Home() {
               style={{
                 width: 200,
                 height: 84,
-                border: "1px solid color-mix(in srgb, #f3f2f2 22%, transparent)",
+                border:
+                  "1px solid color-mix(in srgb, #f3f2f2 22%, transparent)",
                 marginBottom: 18,
               }}
             >
-              <ImageSlot id="va-logo" placeholder="Sua logo" fit="contain" sizes="200px" />
+              <ImageSlot
+                id="va-logo"
+                placeholder="Sua logo"
+                fit="contain"
+                sizes="200px"
+              />
             </div>
             <p
               style={{
@@ -787,7 +798,12 @@ export default function Home() {
               <br />
               Fotografia
             </p>
-            <p style={{ margin: 0, color: "color-mix(in srgb, #f3f2f2 62%, transparent)" }}>
+            <p
+              style={{
+                margin: 0,
+                color: "color-mix(in srgb, #f3f2f2 62%, transparent)",
+              }}
+            >
               João Pessoa · Paraíba · Brasil
             </p>
           </div>
@@ -814,7 +830,11 @@ export default function Home() {
               Séries
             </span>
             {series.map((s) => (
-              <Link key={s.slug} href={`/galerias#${s.slug}`} style={{ color: "#f3f2f2" }}>
+              <Link
+                key={s.slug}
+                href={`/galerias#${s.slug}`}
+                style={{ color: "#f3f2f2" }}
+              >
                 {s.nome}
               </Link>
             ))}
@@ -860,8 +880,8 @@ export default function Home() {
             color: "color-mix(in srgb, #f3f2f2 50%, transparent)",
           }}
         >
-          © 2026 Vinícius Almeida Fotografia. Todas as imagens são de autoria própria e
-          protegidas por direito autoral.
+          © 2026 Vinícius Almeida Fotografia. Todas as imagens são de autoria
+          própria e protegidas por direito autoral.
         </p>
       </footer>
     </div>

@@ -107,6 +107,7 @@ function estiloAba(ativo: boolean): CSSProperties {
       : "color-mix(in srgb, var(--color-text) 62%, transparent)",
     borderBottom: `2px solid ${ativo ? "var(--color-accent)" : "transparent"}`,
     marginBottom: "-1px",
+    transition: "color 0.25s var(--ease), border-color 0.25s var(--ease)",
   };
 }
 
@@ -145,10 +146,11 @@ export default function Galerias() {
         textWrap: "pretty",
       }}
     >
-      <header
+      <div
+        className="tabs-drawer"
         style={{
           position: "sticky",
-          top: 0,
+          top: "var(--header-h)",
           zIndex: 20,
           background: "color-mix(in srgb, var(--color-bg) 92%, transparent)",
           backdropFilter: "blur(8px)",
@@ -157,86 +159,43 @@ export default function Galerias() {
       >
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 24,
-            padding: "14px clamp(20px, 4vw, 56px)",
             maxWidth: 1240,
             margin: "0 auto",
+            padding: "0 var(--gutter)",
+            display: "flex",
+            gap: "clamp(18px, 3vw, 40px)",
+            flexWrap: "wrap",
+            fontFamily: "var(--font-heading)",
+            fontSize: 14,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
           }}
         >
-          <Link
-            href="/"
-            style={{ display: "flex", alignItems: "center", gap: 12, color: "var(--color-text)" }}
-          >
-            <span
-              style={{ fontFamily: "var(--font-heading)", fontSize: 17, letterSpacing: "0.02em" }}
+          {abas.map((a) => (
+            <button
+              key={a.slug}
+              type="button"
+              onClick={() => ir(a.slug)}
+              aria-current={a.slug === atual ? "page" : undefined}
+              style={estiloAba(a.slug === atual)}
             >
-              Vinícius Almeida
-            </span>
-          </Link>
-          <nav
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "clamp(14px, 2vw, 30px)",
-              fontFamily: "var(--font-heading)",
-              fontSize: 14,
-              letterSpacing: "0.04em",
-            }}
-          >
-            <Link href="/" style={{ color: "var(--color-text)" }}>
-              ← Início
-            </Link>
-            <Link href="/#contato" className="btn btn-primary">
-              Contratar
-            </Link>
-          </nav>
+              {a.rotulo}
+            </button>
+          ))}
         </div>
-        <div
-          style={{
-            borderTop: "1px solid var(--color-divider)",
-            padding: "0 clamp(20px, 4vw, 56px)",
-          }}
-        >
-          <div
-            style={{
-              maxWidth: 1240,
-              margin: "0 auto",
-              display: "flex",
-              gap: "clamp(18px, 3vw, 40px)",
-              flexWrap: "wrap",
-              fontFamily: "var(--font-heading)",
-              fontSize: 14,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            {abas.map((a) => (
-              <button
-                key={a.slug}
-                type="button"
-                onClick={() => ir(a.slug)}
-                aria-current={a.slug === atual ? "page" : undefined}
-                style={estiloAba(a.slug === atual)}
-              >
-                {a.rotulo}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
+      </div>
 
       <section
         style={{
           padding:
-            "clamp(40px, 6vw, 88px) clamp(20px, 4vw, 56px) clamp(56px, 8vw, 110px)",
+            "clamp(40px, 6vw, 88px) var(--gutter) clamp(56px, 8vw, 110px)",
           maxWidth: 1240,
           margin: "0 auto",
         }}
       >
         <div
+          key={`${aba.slug}-info`}
+          className="painel-galeria"
           style={{
             display: "flex",
             gap: "clamp(24px, 4vw, 64px)",
@@ -288,21 +247,17 @@ export default function Galerias() {
         </div>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "clamp(16px, 2vw, 28px)",
-            marginTop: "clamp(28px, 4vw, 48px)",
-          }}
+          key={`${atual}-grid`}
+          className="gallery-grid painel-galeria"
+          style={{ marginTop: "clamp(28px, 4vw, 48px)" }}
         >
-          {aba.fotos.map((f) => (
+          {aba.fotos.map((f, i) => (
             <figure
               key={f.id}
-              className="plate"
+              className={`plate${f.largo ? " gallery-item--wide" : ""}`}
               style={{
                 aspectRatio: f.ratio,
-                gridColumn: f.largo ? "span 2" : undefined,
-                minWidth: f.largo ? 0 : undefined,
+                animationDelay: `${i * 60}ms`,
               }}
             >
               <ImageSlot
@@ -316,10 +271,11 @@ export default function Galerias() {
       </section>
 
       <section
+        data-header-invert
         style={{
           background: "#191714",
           color: "#f3f2f2",
-          padding: "clamp(48px, 7vw, 96px) clamp(20px, 4vw, 56px)",
+          padding: "clamp(48px, 7vw, 96px) var(--gutter)",
         }}
       >
         <div
