@@ -185,7 +185,7 @@ const depoimentos = [
   },
   {
     texto:
-      "“Do civil à última música. Recebemos as fotos antes do prazo e chorei escolhendo as do álbum.”",
+      "“Adorei as fotos, ficaram muito bonitas e profissionais, mesmo sendo em um estúdio improvisado. Não sou bom fazendo poses, mas Vinícius me auxiliou para ficar top. Recomendo de olhos fechados.”",
     autor: "Jeffson Oliveira · Fotos Corporativas",
   },
 ];
