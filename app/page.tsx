@@ -43,10 +43,12 @@ type Serie = {
   texto: string;
   en: string;
   slug: string;
-  slots: [string, string, string];
-  legendas: [string, string, string];
+  slots: string[];
+  legendas: string[];
   invertido: boolean;
   ultimo?: boolean;
+  /** "padrao": 1 foto larga + 2 retratos. "retratos": todas as fotos em retrato. */
+  grade?: "padrao" | "retratos";
 };
 
 const series: Serie[] = [
@@ -76,13 +78,16 @@ const series: Serie[] = [
       "Retrato profissional, book, perfil corporativo e still de produto. Fundo, luz e direção pensados antes de você chegar, para que a sessão renda o máximo em pouco tempo.",
     en: "Studio portraits, headshots and product still life.",
     slug: "estudio",
-    slots: ["va-est-1", "va-est-2", "va-est-3"],
+    slots: ["va-est-1", "va-est-2", "va-est-3", "va-est-4", "va-est-5"],
     legendas: [
-      "Estúdio — foto principal",
-      "Estúdio — retrato",
-      "Estúdio — produto",
+      "Estúdio — retrato 01",
+      "Estúdio — retrato 02",
+      "Estúdio — retrato 03",
+      "Estúdio — retrato 04",
+      "Estúdio — retrato 05",
     ],
     invertido: true,
+    grade: "retratos",
   },
   {
     id: "externo",
@@ -242,7 +247,7 @@ export default function Home() {
             <BlurText
               text="Almeida"
               animateBy="letters"
-              direction="top"
+              direction="bottom"
               delay={35}
               stepDuration={0.6}
             />
@@ -386,29 +391,45 @@ export default function Home() {
               </Link>
             </div>
             <div style={gradeSerie}>
-              <Reveal style={{ gridColumn: "1 / -1" }}>
-                <div className="plate" style={{ aspectRatio: "3 / 2" }}>
-                  <ImageSlot id={s.slots[0]} placeholder={s.legendas[0]} />
-                </div>
-              </Reveal>
-              <Reveal delay={80}>
-                <div className="plate" style={{ aspectRatio: "4 / 5" }}>
-                  <ImageSlot
-                    id={s.slots[1]}
-                    placeholder={s.legendas[1]}
-                    sizes="(max-width: 900px) 100vw, 25vw"
-                  />
-                </div>
-              </Reveal>
-              <Reveal delay={160}>
-                <div className="plate" style={{ aspectRatio: "4 / 5" }}>
-                  <ImageSlot
-                    id={s.slots[2]}
-                    placeholder={s.legendas[2]}
-                    sizes="(max-width: 900px) 100vw, 25vw"
-                  />
-                </div>
-              </Reveal>
+              {s.grade === "retratos" ? (
+                s.slots.map((slot, i) => (
+                  <Reveal key={slot} delay={i * 80}>
+                    <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+                      <ImageSlot
+                        id={slot}
+                        placeholder={s.legendas[i]}
+                        sizes="(max-width: 900px) 50vw, 25vw"
+                      />
+                    </div>
+                  </Reveal>
+                ))
+              ) : (
+                <>
+                  <Reveal style={{ gridColumn: "1 / -1" }}>
+                    <div className="plate" style={{ aspectRatio: "3 / 2" }}>
+                      <ImageSlot id={s.slots[0]} placeholder={s.legendas[0]} />
+                    </div>
+                  </Reveal>
+                  <Reveal delay={80}>
+                    <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+                      <ImageSlot
+                        id={s.slots[1]}
+                        placeholder={s.legendas[1]}
+                        sizes="(max-width: 900px) 100vw, 25vw"
+                      />
+                    </div>
+                  </Reveal>
+                  <Reveal delay={160}>
+                    <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+                      <ImageSlot
+                        id={s.slots[2]}
+                        placeholder={s.legendas[2]}
+                        sizes="(max-width: 900px) 100vw, 25vw"
+                      />
+                    </div>
+                  </Reveal>
+                </>
+              )}
             </div>
           </article>
         ))}
@@ -768,36 +789,23 @@ export default function Home() {
             paddingBottom: "clamp(28px, 4vw, 48px)",
           }}
         >
-          <div style={{ flex: "1 1 280px", minWidth: 240 }}>
+          <div
+            style={{ flex: "1 1 280px", minWidth: 240, textAlign: "center" }}
+          >
             <div
               style={{
-                width: 200,
-                height: 84,
-                border:
-                  "1px solid color-mix(in srgb, #f3f2f2 22%, transparent)",
-                marginBottom: 18,
+                width: 300,
+                height: 200,
+                margin: "0 auto 18px",
               }}
             >
               <ImageSlot
                 id="va-logo"
                 placeholder="Sua logo"
-                fit="contain"
-                sizes="200px"
+                fit="cover"
+                sizes="600px"
               />
             </div>
-            <p
-              style={{
-                margin: "0 0 10px",
-                fontFamily: "var(--font-heading)",
-                fontSize: "clamp(26px, 3vw, 40px)",
-                fontWeight: 400,
-                lineHeight: 1.05,
-              }}
-            >
-              Vinícius Almeida
-              <br />
-              Fotografia
-            </p>
             <p
               style={{
                 margin: 0,
