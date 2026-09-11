@@ -122,6 +122,25 @@ const series: Serie[] = [
       "Eventos — festa",
     ],
     invertido: true,
+  },
+  {
+    id: "esportes",
+    numero: "05",
+    nome: "Esportes",
+    titulo: "Ação, movimento e emoção",
+    texto:
+      "Cobertura de treinos, campeonatos e eventos esportivos. Fotografia de ação, retratos e bastidores, com atenção à luz e ao momento certo.",
+    en: "Sports coverage and action photography.",
+    slug: "esportes",
+    slots: ["va-spt-1", "va-spt-2", "va-spt-3", "va-spt-4"],
+    legendas: [
+      "Esportes — foto principal",
+      "Esportes — ação",
+      "Esportes — bastidores",
+      "Esportes — retrato",
+    ],
+    invertido: false,
+    grade: "retratos",
     ultimo: true,
   },
 ];
@@ -157,17 +176,17 @@ const depoimentos = [
   {
     texto:
       "“Ele passou o dia inteiro com a equipe e ninguém percebeu que estava sendo fotografado. O resultado é a nossa fábrica como ela é.”",
-    autor: "Marina Duarte · Indústria têxtil, Campina Grande",
+    autor: "Allana & Wellington · Pré-wedding",
   },
   {
     texto:
       "“Precisávamos de retratos corporativos para o site em uma manhã. Saiu tudo em duas horas, com uma direção que deixou todo mundo à vontade.”",
-    autor: "Rafael Tavares · Escritório de advocacia, João Pessoa",
+    autor: "Charley Marinho · Batizado",
   },
   {
     texto:
       "“Do civil à última música. Recebemos as fotos antes do prazo e chorei escolhendo as do álbum.”",
-    autor: "Júlia e Pedro · Casamento em Jacumã",
+    autor: "Jeffson Oliveira · Fotos Corporativas",
   },
 ];
 
@@ -289,12 +308,12 @@ export default function Home() {
             }}
           >
             Fotografia documental, de estúdio, externa e de eventos. Trabalho
-            com quem quer registro honesto: imagens que continuam dizendo algo
+            com quem quer registro honesto, imagens que continuam dizendo algo
             dez anos depois de feitas.
           </p>
           <p style={{ ...legenda, flex: "0 1 300px", margin: 0 }}>
-            Documentary, studio, outdoor and event photography — commissions in
-            Paraíba and across Brazil.
+            Documentary, studio, outdoor and event photography, commissions in
+            Paraíba.
           </p>
           <div
             style={{
@@ -340,7 +359,7 @@ export default function Home() {
               fontWeight: 500,
             }}
           >
-            Quatro maneiras de olhar
+            Varias maneiras de olhar
           </h2>
           <span
             style={{
@@ -352,7 +371,7 @@ export default function Home() {
               color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
             }}
           >
-            Séries 01 — 04
+            Séries 01 — 05
           </span>
         </div>
 
@@ -470,8 +489,7 @@ export default function Home() {
             color: "color-mix(in srgb, #f3f2f2 66%, transparent)",
           }}
         >
-          Mais de 180 ensaios e coberturas entregues desde 2018 · João Pessoa,
-          PB
+          Mais de 50 ensaios e coberturas entregues desde 2023 · João Pessoa, PB
         </p>
       </section>
 
@@ -519,9 +537,10 @@ export default function Home() {
             style={{ columns: "2 260px", columnGap: "clamp(24px, 3vw, 44px)" }}
           >
             <p style={justificado}>
-              Comecei fotografando o que estava perto: feiras, praia, o bairro.
-              O olhar documental que se formou ali continua na base de tudo o
-              que faço hoje — inclusive no estúdio e nos eventos.
+              Nasci e cresci no interior da Paraíba, numa cidade chamada
+              Tavares. Comecei fotografando o que estava perto: feiras, sitios e
+              o bairro. O olhar documental que se formou ali continua na base de
+              tudo o que faço hoje, inclusive no estúdio e nos eventos.
             </p>
             <p style={justificado}>
               Atendo clientes particulares, marcas e empresas. Cuido de todo o
@@ -529,9 +548,8 @@ export default function Home() {
               durante a sessão, seleção e tratamento final das imagens.
             </p>
             <p style={justificado}>
-              Trabalho com equipamento próprio e completo, incluindo iluminação
-              para estúdio e locação, e mantenho backup redundante de todo
-              material entregue.
+              Trabalho com equipamento próprio, e mantenho backup redundante de
+              todo material entregue.
             </p>
           </div>
           <hr className="hr" />
@@ -544,8 +562,8 @@ export default function Home() {
             }}
           >
             {[
-              ["2018", "Início do trabalho autoral"],
-              ["180+", "Ensaios e coberturas"],
+              ["2023", "Início do trabalho autoral"],
+              ["50+", "Ensaios e coberturas"],
               ["04", "Frentes de trabalho"],
             ].map(([numero, texto]) => (
               <div key={numero}>

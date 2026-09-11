@@ -28,12 +28,27 @@ const abas: Aba[] = [
       "Rotinas, ofícios e famílias fotografados como acontecem. Sem pose, sem interferência — o registro de um lugar no tempo em que ele existiu.",
     en: "Documentary work — single-day assignments to multi-month projects.",
     fotos: [
-      { id: "gal-doc-1", legenda: "Documental — abertura, 16:9", ratio: "16 / 9", largo: true },
+      {
+        id: "gal-doc-1",
+        legenda: "Documental — abertura, 16:9",
+        ratio: "16 / 9",
+        largo: true,
+      },
       { id: "gal-doc-2", legenda: "Documental 02", ratio: "4 / 5" },
       { id: "gal-doc-3", legenda: "Documental 03", ratio: "4 / 5" },
+      {
+        id: "gal-doc-5",
+        legenda: "Documental 05",
+        ratio: "3 / 2",
+        largo: true,
+      },
+      {
+        id: "gal-doc-6",
+        legenda: "Documental 06",
+        ratio: "3 / 2",
+        largo: true,
+      },
       { id: "gal-doc-4", legenda: "Documental 04", ratio: "4 / 5" },
-      { id: "gal-doc-5", legenda: "Documental 05", ratio: "3 / 2" },
-      { id: "gal-doc-6", legenda: "Documental 06", ratio: "3 / 2" },
     ],
   },
   {
@@ -47,10 +62,15 @@ const abas: Aba[] = [
     fotos: [
       { id: "gal-est-1", legenda: "Estúdio 01", ratio: "4 / 5" },
       { id: "gal-est-2", legenda: "Estúdio 02", ratio: "4 / 5" },
-      { id: "gal-est-3", legenda: "Estúdio — foto larga", ratio: "16 / 9", largo: true },
-      { id: "gal-est-4", legenda: "Estúdio 04", ratio: "1 / 1" },
-      { id: "gal-est-5", legenda: "Estúdio 05", ratio: "1 / 1" },
-      { id: "gal-est-6", legenda: "Estúdio 06", ratio: "1 / 1" },
+      {
+        id: "gal-est-3",
+        legenda: "Estúdio — foto larga",
+        ratio: "16 / 9",
+        largo: true,
+      },
+      { id: "gal-est-4", legenda: "Estúdio 04", ratio: "4 / 5" },
+      { id: "gal-est-5", legenda: "Estúdio 05", ratio: "4 / 5" },
+      { id: "gal-est-6", legenda: "Estúdio 06", ratio: "4 / 5" },
     ],
   },
   {
@@ -62,12 +82,17 @@ const abas: Aba[] = [
       "Ensaios em locação — praia, centro histórico, arquitetura, sertão. Horário escolhido pela luz: primeira ou última hora do dia.",
     en: "On-location sessions across Paraíba.",
     fotos: [
-      { id: "gal-ext-1", legenda: "Externo — panorâmica", ratio: "2 / 1", largo: true },
+      {
+        id: "gal-ext-1",
+        legenda: "Externo — panorâmica",
+        ratio: "2 / 1",
+        largo: true,
+      },
       { id: "gal-ext-2", legenda: "Externo 02", ratio: "4 / 5" },
       { id: "gal-ext-3", legenda: "Externo 03", ratio: "4 / 5" },
-      { id: "gal-ext-4", legenda: "Externo 04", ratio: "3 / 2" },
       { id: "gal-ext-5", legenda: "Externo 05", ratio: "3 / 2" },
       { id: "gal-ext-6", legenda: "Externo 06", ratio: "3 / 2" },
+      { id: "gal-ext-4", legenda: "Externo 04", ratio: "16 / 9", largo: true },
     ],
   },
   {
@@ -79,12 +104,34 @@ const abas: Aba[] = [
       "Casamentos, formaturas, shows e eventos corporativos. Cobertura contínua e discreta, com entrega selecionada e tratada.",
     en: "Weddings, parties and corporate coverage.",
     fotos: [
-      { id: "gal-eve-1", legenda: "Eventos 01", ratio: "3 / 2" },
-      { id: "gal-eve-2", legenda: "Eventos 02", ratio: "3 / 2" },
-      { id: "gal-eve-3", legenda: "Eventos — foto larga", ratio: "16 / 9", largo: true },
+      { id: "gal-eve-1", legenda: "Eventos 01", ratio: "4 / 5" },
+      { id: "gal-eve-2", legenda: "Eventos 02", ratio: "4 / 5" },
+      {
+        id: "gal-eve-3",
+        legenda: "Eventos — foto larga",
+        ratio: "16 / 9",
+        largo: true,
+      },
       { id: "gal-eve-4", legenda: "Eventos 04", ratio: "4 / 5" },
       { id: "gal-eve-5", legenda: "Eventos 05", ratio: "4 / 5" },
       { id: "gal-eve-6", legenda: "Eventos 06", ratio: "4 / 5" },
+    ],
+  },
+  {
+    slug: "esportes",
+    numero: "05",
+    rotulo: "05 Esportes",
+    titulo: "Esportes",
+    texto:
+      "Cobertura de treinos, campeonatos e eventos esportivos. Fotografia de ação, retratos e bastidores, com atenção à luz e ao momento certo.",
+    en: "Sports coverage and action photography.",
+    fotos: [
+      { id: "gal-spt-1", legenda: "Esportes 01", ratio: "4 / 5" },
+      { id: "gal-spt-2", legenda: "Esportes 02", ratio: "4 / 5" },
+      { id: "gal-spt-3", legenda: "Esportes 03", ratio: "4 / 5" },
+      { id: "gal-spt-4", legenda: "Esportes 04", ratio: "4 / 5" },
+      { id: "gal-spt-5", legenda: "Esportes 05", ratio: "16 / 9", largo: true },
+      { id: "gal-spt-6", legenda: "Esportes 06", ratio: "4 / 5" },
     ],
   },
 ];
@@ -217,7 +264,13 @@ export default function Galerias() {
             >
               {aba.titulo}
             </h1>
-            <p style={{ margin: 0, maxWidth: 560, fontSize: "clamp(16px, 1.5vw, 19px)" }}>
+            <p
+              style={{
+                margin: 0,
+                maxWidth: 560,
+                fontSize: "clamp(16px, 1.5vw, 19px)",
+              }}
+            >
               {aba.texto}
             </p>
           </div>
@@ -250,7 +303,11 @@ export default function Galerias() {
               <ImageSlot
                 id={f.id}
                 placeholder={f.legenda}
-                sizes={f.largo ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 30vw"}
+                sizes={
+                  f.largo
+                    ? "(max-width: 900px) 100vw, 60vw"
+                    : "(max-width: 900px) 100vw, 30vw"
+                }
               />
             </figure>
           ))}
@@ -293,7 +350,10 @@ export default function Galerias() {
             <a
               href={WHATSAPP}
               className="btn btn-primary"
-              style={{ color: "var(--color-accent-400)", borderColor: "var(--color-accent-400)" }}
+              style={{
+                color: "var(--color-accent-400)",
+                borderColor: "var(--color-accent-400)",
+              }}
             >
               WhatsApp
             </a>
