@@ -4,6 +4,7 @@ import ImageSlot from "@/components/ImageSlot";
 import BriefingForm from "@/components/BriefingForm";
 import Reveal from "@/components/Reveal";
 import BlurText from "@/components/BlurText";
+import Beams from "@/components/Beams";
 
 const WHATSAPP = "https://wa.me/5583996274938";
 const EMAIL = "jvinicius7337@gmail.com";
@@ -175,7 +176,7 @@ const processo = [
 const depoimentos = [
   {
     texto:
-      "“Ele passou o dia inteiro com a equipe e ninguém percebeu que estava sendo fotografado. O resultado é a nossa fábrica como ela é.”",
+      "“As fotos ficaram com a sensação de memoria, é percebível a emoção e o momento. Com certeza vou indicar para todas as minhas amigas.”",
     autor: "Allana & Wellington · Pré-wedding",
   },
   {
@@ -466,6 +467,26 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+          }}
+        >
+          <Beams
+            beamWidth={3}
+            beamHeight={30}
+            beamNumber={20}
+            lightColor="#ffffff"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={150}
+            beamColor="#000000"
+            backgroundColor="#000000"
+          />
+        </div>
         <p
           style={{
             position: "relative",
@@ -792,10 +813,33 @@ export default function Home() {
           background: "#191714",
           color: "#f3f2f2",
           padding: "clamp(40px, 6vw, 72px) var(--gutter) 28px",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
           style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+          }}
+        >
+          <Beams
+            beamWidth={3}
+            beamHeight={30}
+            beamNumber={20}
+            lightColor="#ffffff"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={30}
+            beamColor="#000000"
+            backgroundColor="#000000"
+          />
+        </div>
+        <div
+          style={{
+            position: "relative",
             maxWidth: 1240,
             margin: "0 auto",
             display: "flex",
@@ -900,6 +944,7 @@ export default function Home() {
         </div>
         <p
           style={{
+            position: "relative",
             maxWidth: 1240,
             margin: "20px auto 0",
             fontSize: 12.5,
