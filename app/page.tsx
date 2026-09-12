@@ -176,7 +176,7 @@ const processo = [
 const depoimentos = [
   {
     texto:
-      "“As fotos ficaram com a sensação de memoria, é percebível a emoção e o momento. Com certeza vou indicar para todas as minhas amigas.”",
+      "“Uma coisa que posso dizer sem a menor dúvida, foi no momento do ensaio eu não precisei me preocupar com poses ou o melhor jeito, só precisava sentir oque eu estava sentindo e cada momento virou um flash, o ensaio com você foi leve, espontâneo. Você fez cada momento virar uma lembrança para se guardar na memória para sempre!”",
     autor: "Allana & Wellington · Pré-wedding",
   },
   {
