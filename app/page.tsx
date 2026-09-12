@@ -181,7 +181,7 @@ const depoimentos = [
   },
   {
     texto:
-      "“Precisávamos de retratos corporativos para o site em uma manhã. Saiu tudo em duas horas, com uma direção que deixou todo mundo à vontade.”",
+      "“Foi uma experiência incrível, as fotos ficaram maravilhosas e guardamos momentos especiais que vão durar para sempre.”",
     autor: "Charley Marinho · Batizado",
   },
   {
