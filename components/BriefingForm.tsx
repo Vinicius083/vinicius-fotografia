@@ -1,9 +1,16 @@
 "use client";
 
-import { CSSProperties, FormEvent, MouseEvent } from "react";
+import { CSSProperties, FormEvent, MouseEvent, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const WHATSAPP = "5583996274938";
 const EMAIL = "jvinicius7337@gmail.com";
+
+const EMAILJS_SERVICE = "service_1iym566";
+const EMAILJS_TEMPLATE = "template_vrjotaj";
+const EMAILJS_PUBLIC_KEY = "Y0_YhIcOJxz9-OOwO";
+
+type Feedback = { ok: boolean; text: string };
 
 function dados(form: HTMLFormElement) {
   const d = new FormData(form);
@@ -15,7 +22,8 @@ function dados(form: HTMLFormElement) {
     corpo:
       "Olá, Vinícius! Gostaria de contratar uma sessão.\n\n" +
       linha("Nome", d.get("nome")) +
-      linha("Contato", d.get("retorno")) +
+      linha("E-mail", d.get("email")) +
+      linha("WhatsApp", d.get("whatsapp")) +
       linha("Tipo de trabalho", d.get("tipo")) +
       linha("Data prevista", d.get("data")) +
       linha("Local", d.get("local")) +
@@ -30,14 +38,51 @@ const grid2: CSSProperties = {
 };
 
 export default function BriefingForm() {
+  const [isSending, setIsSending] = useState(false);
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
+
   function enviar(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const { nome, corpo } = dados(e.currentTarget);
-    window.location.href =
-      `mailto:${EMAIL}?subject=` +
-      encodeURIComponent("Orçamento de fotografia" + (nome ? ` — ${nome}` : "")) +
-      "&body=" +
-      encodeURIComponent(corpo);
+    const form = e.currentTarget;
+    const d = new FormData(form);
+    const campo = (k: string) => ((d.get(k) as string) || "").trim();
+    setIsSending(true);
+    setFeedback(null);
+    emailjs
+      .send(
+        EMAILJS_SERVICE,
+        EMAILJS_TEMPLATE,
+        {
+          title: "Orçamento de fotografia" + (campo("nome") ? ` — ${campo("nome")}` : ""),
+          name: campo("nome"),
+          email: campo("email"),
+          whatsapp: campo("whatsapp") || "não informado",
+          tipo: campo("tipo"),
+          data: campo("data") || "não informada",
+          local: campo("local") || "não informado",
+          message: campo("mensagem") || "(sem mensagem)",
+          time: new Date().toLocaleString("pt-BR"),
+        },
+        EMAILJS_PUBLIC_KEY,
+      )
+      .then(
+        () => {
+          setFeedback({
+            ok: true,
+            text: "Mensagem enviada! Respondo no e-mail que você informou.",
+          });
+          setIsSending(false);
+          form.reset();
+        },
+        (err) => {
+          console.error(err);
+          setFeedback({
+            ok: false,
+            text: `Não consegui enviar. Tente de novo, use o WhatsApp ou escreva para ${EMAIL}.`,
+          });
+          setIsSending(false);
+        },
+      );
   }
 
   function enviarWhatsapp(e: MouseEvent<HTMLButtonElement>) {
@@ -74,15 +119,28 @@ export default function BriefingForm() {
           <input className="input" name="nome" required placeholder="Seu nome" />
         </label>
         <label className="field">
-          <span>E-mail ou WhatsApp</span>
+          <span>E-mail</span>
           <input
             className="input"
-            name="retorno"
+            name="email"
+            type="email"
+            autoComplete="email"
             required
-            placeholder="Como te respondo"
+            placeholder="seu@email.com"
           />
         </label>
       </div>
+
+      <label className="field">
+        <span>WhatsApp (opcional)</span>
+        <input
+          className="input"
+          name="whatsapp"
+          type="tel"
+          autoComplete="tel"
+          placeholder="(00) 00000-0000"
+        />
+      </label>
 
       <div style={grid2}>
         <label className="field">
@@ -118,8 +176,8 @@ export default function BriefingForm() {
       </label>
 
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-        <button type="submit" className="btn btn-primary">
-          Enviar por e-mail
+        <button type="submit" className="btn btn-primary" disabled={isSending}>
+          {isSending ? "Enviando…" : "Enviar por e-mail"}
         </button>
         <button type="button" className="btn btn-secondary" onClick={enviarWhatsapp}>
           Enviar no WhatsApp
@@ -133,8 +191,23 @@ export default function BriefingForm() {
           color: "color-mix(in srgb, var(--color-text) 55%, transparent)",
         }}
       >
-        O botão abre seu app de e-mail ou o WhatsApp com a mensagem já montada.
+        O e-mail chega direto para mim; o WhatsApp abre com a mensagem já montada.
       </p>
+
+      {feedback && (
+        <div
+          role="status"
+          style={{
+            padding: "12px 16px",
+            fontSize: 14,
+            borderRadius: "var(--radius-md)",
+            color: feedback.ok ? "#4ade80" : "#ef4444",
+            border: `1px solid ${feedback.ok ? "#4ade80" : "#ef4444"}`,
+          }}
+        >
+          {feedback.text}
+        </div>
+      )}
     </form>
   );
 }
