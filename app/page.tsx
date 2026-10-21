@@ -31,7 +31,7 @@ const gradeSerie: CSSProperties = {
   flex: "2 1 420px",
   minWidth: 280,
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
   gap: 16,
   alignContent: "start",
 };
@@ -48,7 +48,7 @@ type Serie = {
   legendas: string[];
   invertido: boolean;
   ultimo?: boolean;
-  /** "padrao": 1 foto larga + 2 retratos. "retratos": todas as fotos em retrato. */
+  /** "padrao": 1 foto larga + retratos. "retratos": todas as fotos em retrato. */
   grade?: "padrao" | "retratos";
 };
 
@@ -427,31 +427,28 @@ export default function Home() {
                   </Reveal>
                 ))
               ) : (
-                <>
-                  <Reveal style={{ gridColumn: "1 / -1" }}>
-                    <div className="plate" style={{ aspectRatio: "3 / 2" }}>
-                      <ImageSlot id={s.slots[0]} placeholder={s.legendas[0]} />
-                    </div>
-                  </Reveal>
-                  <Reveal delay={80}>
-                    <div className="plate" style={{ aspectRatio: "4 / 5" }}>
+                s.slots.map((slot, i) => (
+                  <Reveal
+                    key={slot}
+                    delay={i * 80}
+                    style={i === 0 ? { gridColumn: "1 / -1" } : undefined}
+                  >
+                    <div
+                      className="plate"
+                      style={{ aspectRatio: i === 0 ? "3 / 2" : "4 / 5" }}
+                    >
                       <ImageSlot
-                        id={s.slots[1]}
-                        placeholder={s.legendas[1]}
-                        sizes="(max-width: 900px) 100vw, 25vw"
+                        id={slot}
+                        placeholder={s.legendas[i]}
+                        sizes={
+                          i === 0
+                            ? "(max-width: 900px) 100vw, 50vw"
+                            : "(max-width: 900px) 100vw, 25vw"
+                        }
                       />
                     </div>
                   </Reveal>
-                  <Reveal delay={160}>
-                    <div className="plate" style={{ aspectRatio: "4 / 5" }}>
-                      <ImageSlot
-                        id={s.slots[2]}
-                        placeholder={s.legendas[2]}
-                        sizes="(max-width: 900px) 100vw, 25vw"
-                      />
-                    </div>
-                  </Reveal>
-                </>
+                ))
               )}
             </div>
           </article>
