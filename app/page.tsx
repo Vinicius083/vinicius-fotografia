@@ -62,11 +62,12 @@ const series: Serie[] = [
       "Acompanhamento de rotinas, ofícios, famílias e trabalho de campo. Nada de posar: eu me ajusto ao ritmo do lugar e fotografo o que já estava ali. Ensaios de meio dia a projetos de meses.",
     en: "Documentary — long-form and single-day.",
     slug: "documental",
-    slots: ["va-doc-1", "va-doc-2", "va-doc-3"],
+    slots: ["va-doc-1", "va-doc-2", "va-doc-3", "va-doc-4"],
     legendas: [
       "Documental — foto principal",
       "Documental — retrato",
       "Documental — detalhe",
+      "Documental — retrato",
     ],
     invertido: false,
   },
@@ -99,11 +100,12 @@ const series: Serie[] = [
       "Ensaios em locação: praia, centro histórico, sertão, arquitetura. Escolho horário e ponto pela luz — quase sempre a primeira ou a última hora do dia.",
     en: "On-location sessions across Paraíba.",
     slug: "externo",
-    slots: ["va-ext-1", "va-ext-2", "va-ext-3"],
+    slots: ["va-ext-1", "va-ext-2", "va-ext-3", "va-ext-4"],
     legendas: [
       "Externo — foto principal",
       "Externo — locação",
       "Externo — retrato",
+      "Externo — retrato 2",
     ],
     invertido: false,
   },
@@ -116,11 +118,12 @@ const series: Serie[] = [
       "Casamentos, aniversários, formaturas, shows e eventos corporativos. Cobertura discreta do começo ao fim, com entrega selecionada e tratada — não um despejo de arquivos.",
     en: "Weddings, parties and corporate coverage.",
     slug: "eventos",
-    slots: ["va-eve-1", "va-eve-2", "va-eve-3"],
+    slots: ["va-eve-1", "va-eve-2", "va-eve-3", "va-eve-4"],
     legendas: [
       "Eventos — foto principal",
       "Eventos — momento",
       "Eventos — festa",
+      "Eventos — festa 2",
     ],
     invertido: true,
   },
@@ -863,6 +866,7 @@ export default function Home() {
             >
               <ImageSlot
                 id="va-logo"
+                zoom={false}
                 placeholder="Sua logo"
                 fit="cover"
                 sizes="600px"

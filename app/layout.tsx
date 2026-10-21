@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Lora } from "next/font/google";
 import Header from "@/components/Header";
+import Lightbox from "@/components/Lightbox";
 import "./design-system.css";
 
 const cormorant = Cormorant_Garamond({
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+        <Lightbox />
       </body>
     </html>
   );

@@ -117,7 +117,6 @@ figcaption {
 ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
 
 .plate {
-  filter: sepia(0.22) saturate(0.82) contrast(1.05);
   box-sizing: border-box;
   border: 6px solid var(--color-surface);
   outline: 1px solid var(--color-divider);
@@ -422,4 +421,57 @@ a.contact-row:hover { color: var(--color-accent-700); text-decoration: none; }
 }
 .painel-galeria .plate {
   animation: painel-entra 0.6s var(--ease) both;
+}
+
+/* Foto ampliada (components/Lightbox.tsx) */
+[data-zoom] { cursor: zoom-in; }
+@keyframes lightbox-entra { from { opacity: 0; } to { opacity: 1; } }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 56px);
+  background: rgba(15, 14, 12, 0.92);
+  animation: lightbox-entra 0.25s var(--ease) both;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+  animation: lightbox-entra 0.3s var(--ease) both;
+}
+.lightbox-btn {
+  position: absolute;
+  appearance: none;
+  border: 0;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f3f2f2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.lightbox-btn:hover { background: rgba(255, 255, 255, 0.22); }
+.lightbox-fechar { top: 16px; right: 16px; }
+.lightbox-ant { left: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox-prox { right: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox-contador {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(243, 242, 242, 0.7);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  font-feature-settings: "tnum";
+}
+@media (max-width: 700px) {
+  .lightbox-ant, .lightbox-prox { top: auto; bottom: 8px; transform: none; }
 }

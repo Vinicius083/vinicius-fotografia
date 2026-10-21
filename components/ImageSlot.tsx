@@ -11,6 +11,8 @@ type Props = {
   /** Marca a imagem como prioritária no carregamento (usar só na abertura). */
   priority?: boolean;
   sizes?: string;
+  /** Abre a foto ampliada ao clicar (padrão). Use false em logos e similares. */
+  zoom?: boolean;
 };
 
 export default function ImageSlot({
@@ -19,6 +21,7 @@ export default function ImageSlot({
   fit = "cover",
   priority = false,
   sizes = "(max-width: 900px) 100vw, 50vw",
+  zoom = true,
 }: Props) {
   const src = fotos[id];
 
@@ -47,7 +50,10 @@ export default function ImageSlot({
   }
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <div
+      style={{ position: "relative", width: "100%", height: "100%" }}
+      {...(zoom ? { "data-zoom": src, "data-alt": placeholder } : {})}
+    >
       <Image
         src={src}
         alt={placeholder}
